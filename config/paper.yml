@@ -1,0 +1,123 @@
+settings:
+  use-display-name-in-quit-message: false
+  chunk-loading:
+    min-load-radius: 2
+    max-concurrent-sends: 2
+    autoconfig-send-distance: true
+  max-joins-per-tick: 3
+  region-file-cache-size: 256
+  incoming-packet-spam-threshold: 300
+  save-empty-scoreboard-teams: false
+  enable-player-collisions: true
+  player-auto-save-rate: -1
+  max-player-auto-save-per-tick: -1
+  load-permissions-yml-before-plugins: true
+  bungee-online-mode: true
+  suggest-player-names-when-null-tab-completions: true
+  watchdog:
+    early-warning-every: 5000
+    early-warning-delay: 10000
+  spam-limiter:
+    tab-spam-increment: 1
+    tab-spam-limit: 500
+  book-size:
+    page-max: 2560
+    total-multiplier: 0.98
+  console:
+    enable-brigadier-highlighting: true
+    enable-brigadier-completions: true
+  loggers:
+    deobfuscate-stacktraces: true
+  item-validation:
+    display-name: 8192
+    loc-name: 8192
+    lore-line: 8192
+    book:
+      title: 8192
+      author: 8192
+      page: 16384
+  async-chunks:
+    enable: true
+    threads: -1
+  messages:
+    no-permission: "&cYou do not have permission to perform this action."
+    kick:
+      authentication-servers-down: "&cAuthentication servers are down. Please try again later."
+      connection-throttle: "&cPlease wait before reconnecting."
+      flying-player: "&cFlying is not enabled on this server."
+      flying-vehicle: "&cFlying vehicles are not enabled on this server."
+world-settings:
+  default:
+    prevent-moving-into-unloaded-chunks: true
+    optimize-explosions: true
+    fixed-chunk-inhabited-time: -1
+    use-vanilla-world-scoreboard-name-coloring: false
+    game-mechanics:
+      disable-chest-cat-detection: true
+      disable-player-crits: false
+      disable-sprint-interruption-on-attack: false
+      disable-end-credits: false
+      disable-relative-projectile-velocity: false
+      disable-unloaded-chunk-enderpearl: true
+      shield-blocking-delay: 5
+      disable-pillager-patrols: false
+    entities:
+      armor-stands:
+        do-collision-entity-lookups: true
+        tick: true
+      behavior:
+        baby-zombie-movement-modifier: 0.5
+        disable-chest-cat-detection: true
+        disable-player-crits: false
+        disable-sprint-interruption-on-attack: false
+        disable-end-credits: false
+        disable-relative-projectile-velocity: false
+        disable-unloaded-chunk-enderpearl: true
+        shield-blocking-delay: 5
+        disable-pillager-patrols: false
+    max-auto-save-chunks-per-tick: 24
+    max-entity-collisions: 8
+    disable-creeper-lingering-effect: false
+    duplicate-uuid-resolver: saferegen
+    duplicate-uuid-saferegen-delete-range: 32
+    hopper:
+      cooldown-when-full: true
+      disable-move-event: false
+    entity-per-chunk-save-limit:
+      experience_orb: -1
+      snowball: -1
+      ender_pearl: -1
+      arrow: -1
+    tick-rates:
+      sensor:
+        villager:
+          secondarypoi: 40
+          nearestbeehive: 80
+      behavior:
+        villager:
+          validatenearbypoi: 60
+    anti-xray:
+      enabled: true
+      engine-mode: 1
+      max-chunk-section-index: 3
+      update-radius: 2
+      lava-obscures: false
+      use-permission: false
+      hidden-blocks:
+      - gold_ore
+      - iron_ore
+      - coal_ore
+      - lapis_ore
+      - mossy_cobblestone
+      - obsidian
+      - chest
+      - diamond_ore
+      - redstone_ore
+      - clay
+      - emerald_ore
+      - ender_chest
+      replacement-blocks:
+      - stone
+      - oak_planks
+    viewdistances:
+      no-tick-view-distance: 7

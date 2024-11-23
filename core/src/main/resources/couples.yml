@@ -1,0 +1,133 @@
+# LOV4CRAFT Couples Configuration
+
+# Couple formation settings
+formation:
+  # Time in seconds before a couple request expires
+  request-timeout: 300
+  # Cooldown in seconds before a player can send another couple request
+  request-cooldown: 60
+  # Minimum playtime (in minutes) before players can form a couple
+  min-playtime: 60
+
+# Couple benefits
+benefits:
+  # Shared inventory slots
+  shared-inventory:
+    enabled: true
+    slots: 9
+  # Shared home settings
+  shared-homes:
+    enabled: true
+    max-homes: 3
+    teleport-cooldown: 300
+  # Shared experience
+  shared-xp:
+    enabled: true
+    sharing-percentage: 50
+  # Couple chat
+  couple-chat:
+    enabled: true
+    format: "&d[Couple] &7{player}: &f{message}"
+
+# Couple missions
+missions:
+  # Enable couple-specific missions
+  enabled: true
+  # Maximum active missions per couple
+  max-active: 3
+  # Mission refresh interval in hours
+  refresh-interval: 24
+  # Mission categories and their weights
+  categories:
+    building: 30
+    exploration: 25
+    combat: 20
+    farming: 15
+    mining: 10
+
+# Couple areas
+areas:
+  # Enable private areas for couples
+  enabled: true
+  # Maximum area size (blocks)
+  max-size: 100
+  # Maximum number of areas per couple
+  max-areas: 2
+  # Protection settings
+  protection:
+    prevent-block-break: true
+    prevent-block-place: true
+    prevent-pvp: true
+    prevent-mob-spawn: true
+    allow-couple-only: true
+
+# Rewards
+rewards:
+  # Daily rewards for active couples
+  daily:
+    enabled: true
+    items:
+      - material: DIAMOND
+        amount: 2
+      - material: GOLDEN_APPLE
+        amount: 1
+    money: 100
+    crypto: 0.1
+  # Achievement rewards
+  achievements:
+    first-couple:
+      money: 500
+      crypto: 1.0
+    one-week-anniversary:
+      money: 1000
+      crypto: 2.0
+    one-month-anniversary:
+      money: 5000
+      crypto: 10.0
+
+# Events
+events:
+  # Enable couple events
+  enabled: true
+  # Event frequency in hours
+  frequency: 6
+  # Minimum couples required for event to start
+  min-couples: 2
+  # Event duration in minutes
+  duration: 30
+  # Available event types and their weights
+  types:
+    couple-pvp: 20
+    treasure-hunt: 30
+    build-competition: 25
+    parkour-race: 25
+
+# Cosmetics
+cosmetics:
+  # Enable couple particle effects
+  particles:
+    enabled: true
+    default-effect: HEART
+  # Enable couple titles
+  titles:
+    enabled: true
+    format: "&d[{title}]"
+  # Enable couple prefixes
+  prefixes:
+    enabled: true
+    format: "&d❤ "
+
+# Notifications
+notifications:
+  # Discord notifications
+  discord:
+    couple-formation: true
+    couple-breakup: true
+    couple-achievements: true
+    couple-events: true
+  # In-game notifications
+  in-game:
+    couple-login: true
+    couple-logout: true
+    couple-teleport: true
+    couple-achievement: true

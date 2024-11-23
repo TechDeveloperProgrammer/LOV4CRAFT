@@ -1,0 +1,35 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apk add --no-cache python3 make g++ gcc git
+
+# Copy package files
+COPY package*.json ./
+COPY crypto/package*.json ./crypto/
+
+# Install dependencies
+RUN npm install
+RUN cd crypto && npm install
+
+# Copy source code
+COPY crypto/ ./crypto/
+
+# Set environment variables
+ENV NODE_ENV=production
+ENV CRYPTO_API_PORT=4000
+
+# Install web3.js and other blockchain dependencies
+RUN cd crypto && npm install \
+    web3@1.9.0 \
+    @openzeppelin/contracts@4.8.2 \
+    @truffle/hdwallet-provider@2.1.7 \
+    ethereumjs-tx@2.1.2 \
+    ethereumjs-util@7.1.5
+
+# Expose port
+EXPOSE 4000
+
+# Start the cryptocurrency service
+CMD ["node", "crypto/src/index.js"]

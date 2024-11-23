@@ -1,0 +1,80 @@
+version: '3.8'
+
+services:
+  minecraft:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "25565:25565"  # Minecraft server port
+      - "25575:25575"  # RCON port
+      - "3000:3000"    # Web interface port
+    volumes:
+      - .:/workspaces/LOV4CRAFT
+      - minecraft-data:/data
+    environment:
+      - JAVA_MEMORY=4G
+      - EULA=TRUE
+      - TZ=UTC
+    restart: unless-stopped
+    networks:
+      - lov4craft-network
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - lov4craft-network
+
+  discord-bot:
+    build:
+      context: .
+      dockerfile: Dockerfile.discord
+    volumes:
+      - .:/app
+    environment:
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
+    depends_on:
+      - redis
+    networks:
+      - lov4craft-network
+
+  voice-ai:
+    build:
+      context: .
+      dockerfile: Dockerfile.voice
+    volumes:
+      - .:/app
+    environment:
+      - GPT_API_KEY=${GPT_API_KEY}
+    ports:
+      - "5000:5000"
+    networks:
+      - lov4craft-network
+
+  crypto-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.crypto
+    volumes:
+      - .:/app
+    environment:
+      - POLYGON_RPC_URL=${POLYGON_RPC_URL}
+      - COINBASE_API_KEY=${COINBASE_API_KEY}
+      - PAYPAL_CLIENT_ID=${PAYPAL_CLIENT_ID}
+      - PAYPAL_CLIENT_SECRET=${PAYPAL_CLIENT_SECRET}
+    ports:
+      - "4000:4000"
+    networks:
+      - lov4craft-network
+
+volumes:
+  minecraft-data:
+  redis-data:
+
+networks:
+  lov4craft-network:
+    driver: bridge

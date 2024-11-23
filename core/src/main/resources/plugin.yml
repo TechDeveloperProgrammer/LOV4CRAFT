@@ -1,0 +1,26 @@
+name: LOV4CRAFT-Core
+version: '${project.version}'
+main: com.lov4craft.core.LOV4CraftCore
+api-version: '1.19'
+authors: [LOV4CRAFT-Team]
+description: Core functionality for the LOV4CRAFT server
+depend: []
+softdepend: [Vault, LuckPerms]
+commands:
+  lov4craft:
+    description: Main command for LOV4CRAFT server
+    usage: /<command> [help|reload]
+    permission: lov4craft.admin
+permissions:
+  lov4craft.*:
+    description: Gives access to all LOV4CRAFT commands
+    default: op
+    children:
+      lov4craft.admin: true
+      lov4craft.user: true
+  lov4craft.admin:
+    description: Gives access to admin commands
+    default: op
+  lov4craft.user:
+    description: Gives access to user commands
+    default: true

@@ -1,0 +1,29 @@
+redis:
+  # Redis connection settings
+  host: localhost
+  port: 6379
+  password: ''
+  database: 0
+  
+  # Connection pool settings
+  pool:
+    max-total: 8
+    max-idle: 8
+    min-idle: 0
+    test-on-borrow: true
+    test-on-return: true
+    test-while-idle: true
+    min-evictable-idle-time: 60000
+    time-between-eviction-runs: 30000
+    num-tests-per-eviction-run: 3
+    block-when-exhausted: true
+  
+  # Key prefix for all plugin keys
+  key-prefix: 'lov4craft:'
+  
+  # Channel settings for pub/sub
+  channels:
+    sync: 'lov4craft:sync'
+    announcements: 'lov4craft:announcements'
+    missions: 'lov4craft:missions'
+    couples: 'lov4craft:couples'

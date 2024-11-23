@@ -1,0 +1,153 @@
+# LOV4CRAFT Missions Configuration
+
+# General mission settings
+settings:
+  # Enable mission system
+  enabled: true
+  # Maximum active missions per player/couple
+  max-active-missions: 3
+  # Mission refresh interval in hours
+  refresh-interval: 24
+  # Allow mission abandonment
+  allow-abandon: true
+  # Cooldown for abandoning missions (minutes)
+  abandon-cooldown: 60
+
+# Mission categories
+categories:
+  building:
+    enabled: true
+    weight: 30
+    missions:
+      build-house:
+        name: "Build a Love Nest"
+        description: "Build a house together using at least 100 blocks"
+        difficulty: EASY
+        rewards:
+          money: 1000
+          crypto: 0.5
+          items:
+            - material: DIAMOND
+              amount: 5
+      create-garden:
+        name: "Create a Romance Garden"
+        description: "Create a garden with at least 20 different types of flowers"
+        difficulty: MEDIUM
+        rewards:
+          money: 2000
+          crypto: 1.0
+          items:
+            - material: GOLDEN_APPLE
+              amount: 3
+
+  exploration:
+    enabled: true
+    weight: 25
+    missions:
+      find-biomes:
+        name: "Biome Explorers"
+        description: "Discover 5 different biomes together"
+        difficulty: MEDIUM
+        rewards:
+          money: 1500
+          crypto: 0.75
+          items:
+            - material: ENDER_PEARL
+              amount: 4
+      visit-structures:
+        name: "Structure Hunters"
+        description: "Find and explore 3 different structures"
+        difficulty: HARD
+        rewards:
+          money: 3000
+          crypto: 1.5
+          items:
+            - material: NETHERITE_INGOT
+              amount: 1
+
+  combat:
+    enabled: true
+    weight: 20
+    missions:
+      defeat-boss:
+        name: "Boss Slayers"
+        description: "Defeat a boss monster together"
+        difficulty: HARD
+        rewards:
+          money: 5000
+          crypto: 2.5
+          items:
+            - material: ENCHANTED_GOLDEN_APPLE
+              amount: 2
+      protect-village:
+        name: "Village Guardians"
+        description: "Protect a village from a raid"
+        difficulty: MEDIUM
+        rewards:
+          money: 2500
+          crypto: 1.25
+          items:
+            - material: EMERALD
+              amount: 10
+
+# Difficulty multipliers
+difficulty-multipliers:
+  EASY:
+    time: 1.0
+    rewards: 1.0
+  MEDIUM:
+    time: 1.5
+    rewards: 2.0
+  HARD:
+    time: 2.0
+    rewards: 3.0
+
+# Reward settings
+rewards:
+  # Base multiplier for all rewards
+  base-multiplier: 1.0
+  # Additional multiplier for couple missions
+  couple-multiplier: 1.5
+  # Bonus rewards for streak completions
+  streaks:
+    3:
+      money: 1000
+      crypto: 0.5
+    5:
+      money: 2000
+      crypto: 1.0
+    7:
+      money: 3000
+      crypto: 1.5
+    10:
+      money: 5000
+      crypto: 2.5
+
+# Progress tracking
+progress:
+  # Save progress interval (seconds)
+  save-interval: 300
+  # Announce progress milestones
+  announce-milestones: true
+  # Progress update format
+  update-format: "&e[Mission] &7{progress}% completed: {description}"
+
+# Notifications
+notifications:
+  # Mission start notification
+  start:
+    enabled: true
+    format: "&a[Mission Started] &7{mission_name}"
+  # Mission complete notification
+  complete:
+    enabled: true
+    format: "&6[Mission Complete] &7{mission_name} - Rewards: {rewards}"
+  # Mission failed notification
+  failed:
+    enabled: true
+    format: "&c[Mission Failed] &7{mission_name}"
+  # Progress notifications
+  progress:
+    enabled: true
+    interval: 25 # Percentage intervals for notifications
+    format: "&e[Mission Progress] &7{mission_name}: {progress}%"

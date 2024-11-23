@@ -1,0 +1,32 @@
+{
+  "name": "LOV4CRAFT Development",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "minecraft",
+  "workspaceFolder": "/workspaces/LOV4CRAFT",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "redhat.java",
+        "ms-python.python",
+        "dbaeumer.vscode-eslint",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "17",
+      "installMaven": true
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    },
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.11"
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "forwardPorts": [25565, 25575, 3000],
+  "postCreateCommand": "npm install && pip install -r requirements.txt && mvn install"
+}

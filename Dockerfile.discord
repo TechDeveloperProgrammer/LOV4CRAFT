@@ -1,0 +1,23 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Install Python and build dependencies
+RUN apk add --no-cache python3 make g++ gcc
+
+# Copy package files
+COPY package*.json ./
+COPY discord/package*.json ./discord/
+
+# Install dependencies
+RUN npm install
+RUN cd discord && npm install
+
+# Copy source code
+COPY discord/ ./discord/
+
+# Set environment variables
+ENV NODE_ENV=production
+
+# Start the Discord bot
+CMD ["node", "discord/src/index.js"]

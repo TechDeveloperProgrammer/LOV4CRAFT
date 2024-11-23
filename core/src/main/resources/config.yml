@@ -1,0 +1,96 @@
+# LOV4CRAFT Core Configuration
+
+# Debug mode - enables additional logging
+debug: false
+
+# Server settings
+server:
+  name: "LOV4CRAFT"
+  motd: "&6❤ LOV4CRAFT - Minecraft Server for Couples ❤&r"
+  max-couples: 100
+
+# Economy settings
+economy:
+  # Default currency symbol
+  currency-symbol: "$"
+  # Starting balance for new players
+  starting-balance: 100.0
+  
+# Cryptocurrency settings
+crypto:
+  # Enable cryptocurrency features
+  enabled: true
+  # Network to use (polygon, ethereum)
+  network: "polygon"
+  # Contract addresses
+  contracts:
+    token: ""
+    rewards: ""
+  # Gas settings
+  gas:
+    limit: 200000
+    price-multiplier: 1.1
+
+# Discord integration
+discord:
+  # Enable Discord integration
+  enabled: true
+  # Bot token (set via environment variable)
+  token: "${DISCORD_TOKEN}"
+  # Server/Guild ID
+  guild-id: ""
+  # Channel IDs
+  channels:
+    announcements: ""
+    server-status: ""
+    couple-events: ""
+    support: ""
+
+# Voice settings
+voice:
+  # Enable voice features
+  enabled: true
+  # Voice API endpoint
+  api-url: "http://localhost:5000"
+  # Default voice settings
+  default-settings:
+    pitch: 1.0
+    speed: 1.0
+    volume: 1.0
+
+# Security settings
+security:
+  # Enable 2FA requirement for certain actions
+  require-2fa:
+    crypto-transactions: true
+    couple-management: false
+    admin-commands: true
+  # Maximum failed login attempts before temporary ban
+  max-login-attempts: 5
+  # Ban duration in minutes after exceeding max login attempts
+  login-ban-duration: 30
+
+# Performance settings
+performance:
+  # Cache settings
+  cache:
+    player-data: true
+    couple-data: true
+    ttl-seconds: 300
+  # Cleanup settings
+  cleanup:
+    # How often to run cleanup tasks (in minutes)
+    interval: 60
+    # How old data needs to be before cleanup (in days)
+    data-retention: 30
+
+# Logging settings
+logging:
+  # Enable detailed logging
+  detailed: true
+  # Log to file
+  file:
+    enabled: true
+    path: "logs/lov4craft.log"
+    max-size: 10MB
+    max-files: 10
