@@ -2,7 +2,9 @@ package com.lov4craft.core;
 
 import com.lov4craft.core.config.ConfigManager;
 import com.lov4craft.core.database.DatabaseManager;
-import com.lov4craft.core.commands.LOV4CraftCommand;
+import com.lov4craft.core.commands.*;
+import com.lov4craft.core.ai.AIManager;
+import com.lov4craft.core.ai.config.AIConfig;
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 import redis.clients.jedis.JedisPool;
@@ -21,6 +23,12 @@ public class LOV4CraftCore extends JavaPlugin {
     
     @Getter
     private JedisPool redisPool;
+    
+    @Getter
+    private AIManager aiManager;
+    
+    @Getter
+    private AIConfig aiConfig;
 
     @Override
     public void onEnable() {
@@ -30,6 +38,10 @@ public class LOV4CraftCore extends JavaPlugin {
         saveDefaultConfig();
         configManager = new ConfigManager(this);
         configManager.loadConfigs();
+
+        // Initialize AI configuration and manager
+        aiConfig = new AIConfig(this);
+        aiManager = new AIManager(this, aiConfig);
 
         // Initialize database connection
         databaseManager = new DatabaseManager(this);
@@ -45,10 +57,18 @@ public class LOV4CraftCore extends JavaPlugin {
         registerListeners();
 
         getLogger().info("LOV4CRAFT Core has been enabled!");
+        
+        // Log AI services status
+        aiManager.logServicesStatus();
     }
 
     @Override
     public void onDisable() {
+        // Shutdown AI services
+        if (aiManager != null) {
+            aiManager.shutdown();
+        }
+
         // Close database connections
         if (databaseManager != null) {
             databaseManager.shutdown();
@@ -87,11 +107,30 @@ public class LOV4CraftCore extends JavaPlugin {
     }
 
     private void registerCommands() {
+        // Register main plugin command
         getCommand("lov4craft").setExecutor(new LOV4CraftCommand(this));
+        
+        // Register couple commands
+        CoupleCommand coupleCommand = new CoupleCommand(this);
+        getCommand("couple").setExecutor(coupleCommand);
+        getCommand("couple").setTabCompleter(coupleCommand);
+        
+        // Register mission commands
+        MissionCommand missionCommand = new MissionCommand(this);
+        getCommand("mission").setExecutor(missionCommand);
+        getCommand("mission").setTabCompleter(missionCommand);
+        
+        // Register wallet commands
+        WalletCommand walletCommand = new WalletCommand(this);
+        getCommand("wallet").setExecutor(walletCommand);
+        getCommand("wallet").setTabCompleter(walletCommand);
     }
 
     private void registerListeners() {
-        // Register event listeners here
+        // TODO: Register event listeners
+        // getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
+        // getServer().getPluginManager().registerEvents(new MissionListener(this), this);
+        // getServer().getPluginManager().registerEvents(new CoupleListener(this), this);
     }
 
     /**
@@ -100,6 +139,10 @@ public class LOV4CraftCore extends JavaPlugin {
     public void reload() {
         reloadConfig();
         configManager.loadConfigs();
+        
+        // Reload AI configuration and services
+        aiConfig = new AIConfig(this);
+        aiManager.reload();
         
         // Reconnect to database
         databaseManager.shutdown();

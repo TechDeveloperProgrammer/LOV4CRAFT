@@ -1,0 +1,143 @@
+# LOV4CRAFT AI Services Configuration
+
+# Server Optimizer Settings
+optimizer:
+  enabled: true
+  monitoring-interval: 300  # seconds
+  target-tps: 19.5
+  max-memory-usage: 80.0  # percentage
+  auto-restart:
+    enabled: true
+    threshold-tps: 15.0
+    threshold-memory: 90.0
+  chunk-management:
+    unload-unused: true
+    max-chunks-per-player: 256
+    view-distance-optimization: true
+
+# AI Support Settings
+support:
+  enabled: true
+  model: "gpt-3.5-turbo"
+  toxicity-threshold: 0.7
+  response-cache:
+    enabled: true
+    ttl: 3600  # seconds
+  auto-moderation:
+    enabled: true
+    filter-spam: true
+    filter-toxicity: true
+  support-categories:
+    - general_help
+    - technical_issue
+    - gameplay_question
+    - bug_report
+    - feature_request
+    - moderation_issue
+
+# Voice Modulation Settings
+voice:
+  enabled: true
+  api-endpoint: "http://localhost:5000"
+  sample-rate: 44100
+  default-voice: "neutral"
+  effects:
+    - name: "dragon"
+      pitch-shift: 0.7
+      reverb: 0.3
+      distortion: 0.2
+    - name: "ghost"
+      pitch-shift: 1.2
+      echo: 0.4
+      reverb: 0.5
+    - name: "robot"
+      distortion: 0.3
+      compression: 0.8
+      noise-gate: 0.4
+  quality:
+    bit-depth: 16
+    channels: 2
+    buffer-size: 1024
+
+# Content Generator Settings
+content:
+  enabled: true
+  model: "gpt-3.5-turbo"
+  max-generation-attempts: 5
+  structures:
+    romantic_garden:
+      min-size: [5, 3, 5]
+      max-size: [15, 7, 15]
+      materials:
+        - ROSE_BUSH
+        - PEONY
+        - LILY_OF_THE_VALLEY
+    couple_house:
+      min-size: [7, 4, 7]
+      max-size: [12, 8, 12]
+      materials:
+        - OAK_PLANKS
+        - GLASS_PANE
+        - OAK_DOOR
+  quests:
+    couple_adventure:
+      min-duration: 1800  # seconds
+      max-duration: 7200  # seconds
+      difficulty-levels: [1, 2, 3, 4, 5]
+      reward-multiplier: 1.5
+
+# AI Model Settings
+models:
+  gpt-3.5-turbo:
+    temperature: 0.7
+    max-tokens: 150
+    presence-penalty: 0.6
+    frequency-penalty: 0.6
+  gpt-4:
+    temperature: 0.8
+    max-tokens: 250
+    presence-penalty: 0.7
+    frequency-penalty: 0.7
+
+# Performance Settings
+performance:
+  thread-pool:
+    core-size: 4
+    max-size: 8
+    queue-capacity: 100
+  caching:
+    enabled: true
+    max-size: 1000
+    ttl: 3600
+  rate-limiting:
+    enabled: true
+    requests-per-minute: 60
+    burst-size: 10
+
+# Monitoring Settings
+monitoring:
+  enabled: true
+  metrics:
+    collect-interval: 60  # seconds
+    retention-days: 7
+  alerts:
+    enabled: true
+    discord-webhook: ""
+    email: ""
+    thresholds:
+      tps: 15.0
+      memory: 90.0
+      cpu: 80.0
+
+# Security Settings
+security:
+  api-key-rotation:
+    enabled: true
+    interval: 86400  # seconds
+  request-validation:
+    enabled: true
+    timeout: 5000  # milliseconds
+  rate-limiting:
+    enabled: true
+    max-requests: 100
+    window: 60  # seconds

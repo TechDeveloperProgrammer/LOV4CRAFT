@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LOV4CraftCommand implements CommandExecutor, TabCompleter {
-    private final LOV4CraftCore plugin
+    private final LOV4CraftCore plugin;
 
     public LOV4CraftCommand(LOV4CraftCore plugin) {
         this.plugin = plugin;

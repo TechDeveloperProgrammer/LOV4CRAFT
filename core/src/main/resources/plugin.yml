@@ -3,14 +3,51 @@ version: '${project.version}'
 main: com.lov4craft.core.LOV4CraftCore
 api-version: '1.19'
 authors: [LOV4CRAFT-Team]
-description: Core functionality for the LOV4CRAFT server
+description: Core functionality for the LOV4CRAFT server with cryptocurrency rewards, Discord integration, and couple features
 depend: []
 softdepend: [Vault, LuckPerms]
+
 commands:
   lov4craft:
     description: Main command for LOV4CRAFT server
-    usage: /<command> [help|reload]
-    permission: lov4craft.admin
+    usage: |
+      §6=== LOV4CRAFT Commands ===
+      §e/lov4craft help §7- Show this help message
+      §e/lov4craft version §7- Show plugin version
+      §e/lov4craft reload §7- Reload configuration (Admin)
+    permission: lov4craft.user
+    aliases: [l4c]
+  couple:
+    description: Couple management commands
+    usage: |
+      §6=== Couple Commands ===
+      §e/couple invite <player> §7- Invite player to form a couple
+      §e/couple accept §7- Accept a couple invitation
+      §e/couple decline §7- Decline a couple invitation
+      §e/couple break §7- Break up with your couple
+      §e/couple home §7- Teleport to couple home
+      §e/couple sethome §7- Set couple home location
+    permission: lov4craft.couple
+  mission:
+    description: Mission management commands
+    usage: |
+      §6=== Mission Commands ===
+      §e/mission list §7- List available missions
+      §e/mission info <id> §7- Show mission details
+      §e/mission accept <id> §7- Accept a mission
+      §e/mission abandon §7- Abandon current mission
+      §e/mission progress §7- Show mission progress
+    permission: lov4craft.mission
+  wallet:
+    description: Cryptocurrency wallet commands
+    usage: |
+      §6=== Wallet Commands ===
+      §e/wallet link §7- Link your crypto wallet
+      §e/wallet balance §7- Check your balance
+      §e/wallet withdraw §7- Withdraw your rewards
+      §e/wallet history §7- View transaction history
+    permission: lov4craft.wallet
+
 permissions:
   lov4craft.*:
     description: Gives access to all LOV4CRAFT commands
@@ -18,9 +55,38 @@ permissions:
     children:
       lov4craft.admin: true
       lov4craft.user: true
+      lov4craft.couple: true
+      lov4craft.mission: true
+      lov4craft.wallet: true
   lov4craft.admin:
     description: Gives access to admin commands
     default: op
+    children:
+      lov4craft.user: true
   lov4craft.user:
-    description: Gives access to user commands
+    description: Gives access to basic user commands
     default: true
+  lov4craft.couple:
+    description: Gives access to couple commands
+    default: true
+  lov4craft.mission:
+    description: Gives access to mission commands
+    default: true
+  lov4craft.wallet:
+    description: Gives access to wallet commands
+    default: true
+  lov4craft.couple.admin:
+    description: Gives access to couple admin commands
+    default: op
+    children:
+      lov4craft.couple: true
+  lov4craft.mission.admin:
+    description: Gives access to mission admin commands
+    default: op
+    children:
+      lov4craft.mission: true
+  lov4craft.wallet.admin:
+    description: Gives access to wallet admin commands
+    default: op
+    children:
+      lov4craft.wallet: true
